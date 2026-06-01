@@ -5,6 +5,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Models\Comment;
 
+
 class PostController extends Controller
 {
     /**
@@ -13,7 +14,9 @@ class PostController extends Controller
     public function index() 
     {
         // Url: GET /posts
-        $posts=Post::all();
+        $latestTime = now()->subDay(); // last 24 hours
+
+        $posts=Post::where('created_at', '>=', $latestTime)->with('user')->orderBy('created_at', 'desc')->get();
         return view('posts.showAllPosts',compact('posts'));
 
 
@@ -67,6 +70,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         // Url: GET /posts/{id}/edit
+        if(auth()->id()!==$post->user_id){ //checking if the post belongs to logged in user
+            return redirect()->route('loginForm')->with('error','Not allowed');
+        }
         return view ('posts.editOnePost',compact('post'));
 
     }
@@ -77,6 +83,9 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         // Url: PUT /posts/{id}
+        if (auth()->id()!==$post->user_id){ //checking if the post belongs to logged in user
+            abort(403);
+        }
         $validate=$request->validate([
             'title'=>'required|string|max:255',
             'content'=>'required|string|min:30'
@@ -92,6 +101,9 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         // Url: DELETE /posts/{id}
+        if (auth()->id()!==$post->user_id){
+            abort(403);
+        }
         $post->delete();
         return redirect()->route('posts.index')->with('success','Post deleted successfully');
 

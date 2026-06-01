@@ -10,9 +10,9 @@ class Post extends Model
         'title','content','user_id'
     ];
     public function user():BelongsTo{
-        return $this->belongsTo(User::class,'' );
+        return $this->belongsTo(User::class, 'user_id');
     }
     public function comments(){
-        return $this->hasMany(Comment::class,'');
+        return $this->hasMany(Comment::class, 'post_id');
     }
 }

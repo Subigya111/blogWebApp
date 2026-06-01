@@ -41,10 +41,11 @@
 
     </div>
 
-    <!-- Logout -->
-    <div class="mt-3 text-center">
-        @include('auth.logout')
-    </div>
+   <div class="text-center mt-3">
+                        <a href="{{ route('posts.index') }}" class="btn btn-secondary btn-sm">
+                            ← Back
+                        </a>
+                    </div>
 
     <!-- Validation Errors -->
     @if($errors->any())

@@ -17,7 +17,7 @@ class CommentController extends Controller
         'user_id'=>auth()->id()
       ]);
    
-      return redirect()->route('posts.index')->with('success','Comment Added');
+      return redirect()->route('posts.show',$post)->with('success','Comment Added');
     }
 
     public function editComment(Comment $comment){
@@ -48,6 +48,6 @@ public function deleteComment(Comment $comment)
 
     $comment->delete();
 
-    return redirect()->back();
+    return redirect()->back()->with('success','Comment Deleted');
 }
 }
