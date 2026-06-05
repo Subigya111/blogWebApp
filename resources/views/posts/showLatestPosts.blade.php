@@ -50,6 +50,7 @@
                     </div>
                 </div>
             </div>
+            
         
 
         @empty
@@ -61,4 +62,5 @@
        
         @endforelse
     </div>
+     @include('components.page')
 </div>

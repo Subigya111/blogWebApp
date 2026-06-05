@@ -24,8 +24,8 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
 
     // CRUD routes for blog post
-    Route::get('/posts/all', [PostController::class, 'allPosts'])->name('posts.all');
     Route::resource('posts', PostController::class);
+    Route::get('/posts/all', [PostController::class, 'allPosts'])->name('posts.all');
 
     // logout
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');

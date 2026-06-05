@@ -23,7 +23,7 @@
                         {{ $post->title }}
                     </h2>
 
-                    <p class="card-text">
+                    <p style="white-space: pre-line" class="card-text">
                         {{ $post->content }}
                     </p>
 

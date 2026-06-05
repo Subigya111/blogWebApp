@@ -32,6 +32,7 @@
                                 <p class="mb-0 text-secondary">Author: {{ optional($post->user)->name ?? 'Unknown' }}</p>
                                 
                                 <p class="mb-0 text-secondary">Created: {{ optional($post->created_at)->format('M j, Y g:i A') }}</p>
+                                
                             </div>
 
                             <div class="d-flex flex-wrap gap-2">
@@ -61,4 +62,5 @@
        
         @endforelse
     </div>
+    @include('components.page')
 </div>
