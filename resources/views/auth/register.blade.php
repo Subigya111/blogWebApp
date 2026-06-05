@@ -30,7 +30,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="mb-3">
@@ -44,6 +44,7 @@
                                 class="form-control"
                                 placeholder="Enter your name"
                                 value="{{ old('name') }}"
+                                required
                             >
                         </div>
 
@@ -58,6 +59,7 @@
                                 class="form-control"
                                 placeholder="Enter your email"
                                 value="{{ old('email') }}"
+                                required
                             >
                         </div>
 
@@ -71,6 +73,7 @@
                                 name="password"
                                 class="form-control"
                                 placeholder="Enter your password"
+                                required
                             >
                         </div>
 
@@ -84,7 +87,13 @@
                                 name="password_confirmation"
                                 class="form-control"
                                 placeholder="Confirm your password"
+                                required
                             >
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Profile Picture</label>
+                            <input id="avatar" name="image" type="file" accept="image/*" class="form-control">
                         </div>
 
                         <button

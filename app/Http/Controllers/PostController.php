@@ -11,13 +11,22 @@ class PostController extends Controller
     /**
      * show all posts
      */
+    public function allPosts(){
+        $posts=Post::all()->sortByDesc('created_at'); //all posts in descending order (latest-oldest)
+        return view('posts.showAllPosts',compact('posts'));
+    }
+
+    /**
+     * show post from last 24 hrs
+     */
     public function index() 
     {
         // Url: GET /posts
-        $latestTime = now()->subDay(); // last 24 hours
+        $latestTime = now()->subDay();  //subtracts one day from current day
 
         $posts=Post::where('created_at', '>=', $latestTime)->with('user')->orderBy('created_at', 'desc')->get();
-        return view('posts.showAllPosts',compact('posts'));
+        //shows post from last 24 hours
+        return view('posts.showLatestPosts',compact('posts'));
 
 
     }

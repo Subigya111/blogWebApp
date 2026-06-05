@@ -35,7 +35,7 @@
                             <textarea 
                                 name="content" 
                                 class="form-control" 
-                                rows="6"
+                                rows="20"
                             >{{ old('content', $post->content) }}</textarea>
                         </div>
 
@@ -45,12 +45,16 @@
 
                     </form>
 
-                    <!-- Back Button -->
-                    <div class="text-center mt-3">
-                        <a href="{{ route('posts.index') }}" class="btn btn-secondary btn-sm">
-                            ← Back
-                        </a>
+                    <!-- Back & Delete Buttons (centered) -->
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                        <a href="{{ route('posts.index') }}" class="btn btn-secondary btn-sm">← Back</a>
+                        <form action="{{ route('posts.destroy', $post) }}" method="POST" class="m-0">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Delete </button>
+                        </form>
                     </div>
+           
 
                 </div>
 

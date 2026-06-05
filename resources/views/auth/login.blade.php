@@ -56,6 +56,7 @@
                                 class="form-control"
                                 placeholder="Enter your email"
                                 value="{{ old('email') }}"
+                                required
                             >
                         </div>
 
@@ -66,6 +67,7 @@
                                 name="password"
                                 class="form-control"
                                 placeholder="Enter your password"
+                                required
                             >
                         </div>
 

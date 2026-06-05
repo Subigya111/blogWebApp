@@ -1,5 +1,5 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
+@include('components.layout')
 <div class="container mt-4">
 
     <div class="row justify-content-center">
@@ -18,13 +18,13 @@
                         <!-- Title -->
                         <div class="mb-3">
                             <label class="form-label">Title</label>
-                            <input type="text" name="title" class="form-control" placeholder="Enter Title">
+                            <input type="text" name="title" class="form-control" placeholder="Enter Title" required>
                         </div>
 
                         <!-- Content -->
                         <div class="mb-3">
                             <label class="form-label">Content</label>
-                            <textarea name="content" class="form-control" rows="5" placeholder="Enter Content"></textarea>
+                            <textarea name="content" class="form-control" rows="20" placeholder="Enter Content" required></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-success w-100">

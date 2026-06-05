@@ -56,6 +56,27 @@
         margin: 0;
     }
 
+    .site-header .user-section {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .site-header .user-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #3b82f6;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        transition: transform 0.2s ease;
+    }
+
+    .site-header .user-avatar:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+    }
+
     .site-footer {
         border-top: 1px solid #e5e7eb;
         background: #ffffff;
@@ -94,8 +115,27 @@
 
     <div class="nav-actions">
         @auth
-            <span class="user-name">Hi, {{ Auth::user()->name }}</span>
-            <a href="{{ route('posts.create') }}">Create Post</a>
+            <div class="user-section">
+                <span class="user-name">- Hi, {{ Auth::user()->name }}</span>
+                @if(Auth::user()->imagePath)
+                    <img src="{{ asset('storage/' . Auth::user()->imagePath) }}" alt="{{ Auth::user()->name }}" class="user-avatar">
+                @else
+                    <div class="user-avatar" style="background: #cbd5e1;"></div>
+                @endif
+            </div>
+
+            {{--if not on create post page, button will not be displayed in nav bar--}}
+            @if(Route::currentRouteName()!=='posts.create')  
+                <a href="{{ route('posts.create') }}">Create Post</a>
+            @endif
+
+            @if(Route::currentRouteName() !== 'posts.index')
+                <a href="{{ route('posts.index') }}">Latest Posts</a>
+            @endif
+            
+            @if(Route::currentRouteName() !== 'posts.all')
+                <a href="{{ route('posts.all') }}">All Posts</a>
+            @endif
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit">Logout</button>

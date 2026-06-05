@@ -38,7 +38,7 @@ class CommentController extends Controller
 
     $comment->update($validated);
 
-    return redirect()->route('posts.show',$comment->post_id);
+    return redirect()->route('posts.show',$comment->post_id)->with('success','Comment Updated');
 }
 public function deleteComment(Comment $comment)
 {

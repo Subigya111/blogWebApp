@@ -16,11 +16,16 @@ class AuthController extends Controller
 {
     public function register(RegisterRequest $request ){
         $validated=$request->validated();
+        $path=null;
+        if($request->hasFile('image')){
+            $path=$request->file('image')->store('profilePics','public');
+        }
         User::create([
             'name'=>$validated['name'],
             'email'=>$validated['email'],
             'password'=>$validated['password'],
-            'remember_token'=> Str::random(10)
+            'remember_token'=> Str::random(10),
+            'imagePath'=>$path
 
         ]);
         return redirect()->route('loginForm')->with('success','User Registered');

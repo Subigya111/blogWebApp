@@ -18,7 +18,7 @@
 
                         <div class="mb-4">
                             <label class="form-label fw-semibold">Comment</label>
-                            <textarea name="comment" class="form-control rounded-4" rows="2">{{ old('comment', $comment->comment) }}</textarea>
+                            <textarea name="comment" class="form-control rounded-4" rows="4">{{ old('comment', $comment->comment) }}</textarea>
                         </div>
 
                         <button type="submit" class="btn btn-success w-100 py-2 rounded-4">Update Comment</button>

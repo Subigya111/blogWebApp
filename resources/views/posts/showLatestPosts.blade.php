@@ -5,8 +5,8 @@
 <div class="container my-5">
     <header class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
         <div>
-            <h1 class="mb-1">All Posts</h1>
-            <p class="text-muted mb-0">Browse all posts from your blog.</p>
+            <h1 class="mb-1">Latest Posts</h1>
+            <p class="text-muted mb-0">Browse the latest posts.</p>
         </div>
 
         
@@ -55,7 +55,7 @@
         @empty
             <div class="col-12">
                 <div class="alert alert-info rounded-4 shadow-sm">
-                    There are no posts. Click<a href="{{ route('posts.create') }}"> here </a> to create one.
+                    No new post from last 24 hrs.   <a href="{{ route('posts.create') }}">  See All Posts. </a> 
                 </div>
             </div>
        
