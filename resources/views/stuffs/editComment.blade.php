@@ -11,14 +11,21 @@
                     </div>
 
                     <div class="mb-3 px-3 py-2 rounded-4 bg-light">
-                        
+                        <div class="mb-3">
+                            <span class="text-muted">Editing comment for post:</span>
+                            <h5 class="mt-1">{{ optional($comment->post)->title ?? 'Unknown post' }}</h5>
+                            @if(optional($comment->post)->id)
+                                <a href="{{ route('posts.show', $comment->post) }}" class="text-decoration-none">View this post</a>
+                            @endif
+                        </div>  
+
                     <form action="{{ route('comments.update', $comment) }}" method="POST">
                         @csrf
                         @method('PUT')
 
                         <div class="mb-4">
                             <label class="form-label fw-semibold">Comment</label>
-                            <textarea name="comment" class="form-control rounded-4" rows="4">{{ old('comment', $comment->comment) }}</textarea>
+                            <textarea name="comment" class="form-control rounded-4" rows="2">{{ old('comment', $comment->comment) }}</textarea>
                         </div>
 
                         <button type="submit" class="btn btn-success w-100 py-2 rounded-4">Update Comment</button>

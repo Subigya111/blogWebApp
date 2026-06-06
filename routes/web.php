@@ -23,9 +23,12 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
 
+    
+    // Ensure specific 'all posts' route is registered before the resource
+    Route::get('/posts/all', [PostController::class, 'allPosts'])->name('posts.all');
+
     // CRUD routes for blog post
     Route::resource('posts', PostController::class);
-    Route::get('/posts/all', [PostController::class, 'allPosts'])->name('posts.all');
 
     // logout
     Route::post('/logout',[AuthController::class,'logout'])->name('logout');

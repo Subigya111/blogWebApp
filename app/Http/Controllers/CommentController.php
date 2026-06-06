@@ -48,6 +48,6 @@ public function deleteComment(Comment $comment)
 
     $comment->delete();
 
-    return redirect()->back()->with('success','Comment Deleted');
+    return redirect()->route('posts.show',$comment->post_id)->with('success','Comment Deleted');
 }
 }

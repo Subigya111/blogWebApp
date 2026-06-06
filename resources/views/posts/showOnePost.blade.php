@@ -23,11 +23,11 @@
                         {{ $post->title }}
                     </h2>
 
-                    <p style="white-space: pre-line" class="card-text">
+                    <p style="white-space: pre-line" class="card-text"> {{--paragraph style displays--}}
                         {{ $post->content }}
                     </p>
 
-                    <a href="{{ route('posts.index') }}" class="btn btn-secondary mt-3">
+                    <a href="{{ route('posts.all') }}" class="btn btn-secondary mt-3">
                         ← Back
                     </a>
 

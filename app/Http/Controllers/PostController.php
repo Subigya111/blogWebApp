@@ -23,9 +23,9 @@ class PostController extends Controller
     {
         // Url: GET /posts
         $latestTime = now()->subDay();  //subtracts one day from current day
-
-        $posts = Post::where('created_at', '>=', $latestTime)
-            ->with('user')->orderBy('created_at', 'desc')->paginate(4); //shows 4 posts per page
+        
+        //shows post from last 24 hours
+        $posts = Post::where('created_at', '>=', $latestTime)->with('user')->orderBy('created_at', 'desc')->paginate(4); 
         //shows post from last 24 hours
         return view('posts.showLatestPosts', compact('posts'));
 
@@ -55,7 +55,7 @@ class PostController extends Controller
  
 
         Post::create($validate);
-        return redirect()->route('posts.index')->with('success','Added Post Successfully'); //Redirect user and carry
+        return redirect()->route('posts.all')->with('success','Added Post Successfully'); //Redirect user and carry
                                                                             // this message to next page by using session
     }
 

@@ -56,7 +56,7 @@
         @empty
             <div class="col-12">
                 <div class="alert alert-info rounded-4 shadow-sm">
-                    No new post from last 24 hrs.   <a href="{{ route('posts.create') }}">  See All Posts. </a> 
+                    No new post from last 24 hrs.   <a href="{{ route('posts.all') }}">  See All Posts. </a> 
                 </div>
             </div>
        
