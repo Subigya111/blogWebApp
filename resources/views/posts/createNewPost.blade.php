@@ -33,7 +33,7 @@
 
                     </form>
 <div class="text-center mt-3">
-                        <a href="{{ route('posts.index') }}" class="btn btn-secondary btn-sm">
+                        <a href="{{url()->previous() }}" class="btn btn-secondary btn-sm">
                             ← Back
                         </a>
                     </div>

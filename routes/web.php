@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     
     // Ensure specific 'all posts' route is registered before the resource
     Route::get('/posts/all', [PostController::class, 'allPosts'])->name('posts.all');
+    Route::get('/posts/user', [PostController::class, 'userPosts'])->name('posts.user');
 
     // CRUD routes for blog post
     Route::resource('posts', PostController::class);

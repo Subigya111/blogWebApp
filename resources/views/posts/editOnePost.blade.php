@@ -47,7 +47,9 @@
 
                     <!-- Back & Delete Buttons (centered) -->
                     <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="{{ route('posts.index') }}" class="btn btn-secondary btn-sm">← Back</a>
+
+                        {{-- Goes back to previous page on clicking --}}
+                        <a href="{{  url()->previous() }}" class="btn btn-secondary btn-sm">← Back</a>
                         <form action="{{ route('posts.destroy', $post) }}" method="POST" class="m-0">
                             @csrf
                             @method('DELETE')

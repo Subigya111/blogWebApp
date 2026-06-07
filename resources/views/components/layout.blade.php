@@ -30,8 +30,6 @@
 
     .site-header .nav-actions a,
     .site-header .nav-actions button {
-        background: #3b82f6;
-        color: white;
         border: none;
         padding: 0.55rem 0.95rem;
         border-radius: 0.5rem;
@@ -42,7 +40,7 @@
 
     .site-header .nav-actions a:hover,
     .site-header .nav-actions button:hover {
-        background: #2563eb;
+        background: red;
     }
 
     .site-header .nav-actions button {
@@ -67,14 +65,6 @@
         height: 48px;
         border-radius: 50%;
         object-fit: cover;
-        border: 3px solid #3b82f6;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        transition: transform 0.2s ease;
-    }
-
-    .site-header .user-avatar:hover {
-        transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
     }
 
     .site-footer {
@@ -115,14 +105,22 @@
 
     <div class="nav-actions">
         @auth
-            <div class="user-section">
-                <span class="user-name">- Hi, {{ Auth::user()->name }}</span>
-                @if(Auth::user()->imagePath)
-                    <img src="{{ asset('storage/' . Auth::user()->imagePath) }}" alt="{{ Auth::user()->name }}" class="user-avatar">
-                @else
-                    <div class="user-avatar" style="background: #cbd5e1;"></div>
-                @endif
-            </div>
+            @if(Route::currentRouteName() !== 'posts.user')
+                <div class="user-section">
+                    <span class="user-name">- Hi, {{ Auth::user()->name }}</span>
+                    <a href="{{ route('posts.user') }}" style="text-decoration: none;">
+                        @if(Auth::user()->imagePath)
+                            <img src="{{ asset('storage/' . Auth::user()->imagePath) }}" alt="{{ Auth::user()->name }}" class="user-avatar">
+                        @else
+                            <div class="user-avatar" style="background: #cbd5e1;"></div>
+                        @endif
+                    </a>
+                </div>
+            @else
+                <a href="{{ route('posts.all') }}" class="user-name" style="background: transparent; color: white; padding: 0.55rem 0.95rem; border-radius: 0.5rem;">
+                    ← Back
+                </a>
+            @endif
 
             {{--if not on create post page, button will not be displayed in nav bar--}}
             @if(Route::currentRouteName()!=='posts.create')  
@@ -136,14 +134,14 @@
             @if(Route::currentRouteName() !== 'posts.all')
                 <a href="{{ route('posts.all') }}">All Posts</a>
             @endif
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit">Logout</button>
-            </form>
-        @else
+<form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit">Log out</button>
+</form>            @endauth
+        @guest
             <a href="{{ route('loginForm') }}">Login</a>
             <a href="{{ route('registerForm') }}">Register</a>
-        @endauth
+        @endguest
     </div>
 </nav>
 

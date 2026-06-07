@@ -27,7 +27,7 @@
                         {{ $post->content }}
                     </p>
 
-                    <a href="{{ route('posts.all') }}" class="btn btn-secondary mt-3">
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary mt-3">
                         ← Back
                     </a>
 

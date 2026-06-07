@@ -12,8 +12,19 @@ class PostController extends Controller
      * show all posts
      */
     public function allPosts(){
+
+        // Url: GET posts/all
         $posts = Post::with('user')->orderByDesc('created_at')->paginate(4); //shows 4 posts per page
         return view('posts.showAllPosts', compact('posts'));
+    }
+
+    public function userPosts()
+    {
+        // Url: GET posts/user
+        $posts = Post::with('user')->where('user_id', auth()->id())->orderByDesc('created_at')->paginate(4);
+        $pageDescription = 'Browse all posts you have published.';
+
+        return view('posts.showYourPosts', compact('posts', 'pageDescription'));
     }
 
     /**
