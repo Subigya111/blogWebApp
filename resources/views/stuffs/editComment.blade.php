@@ -32,13 +32,13 @@
                     </form>
 
                     <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="{{ url()->previous() }}" class="btn btn-outline-secondary btn-sm rounded-4">
+                        <a href="{{ url()->previous() }}" class="btn btn-secondary btn-sm ">
                             ← Back
                         </a>
                         <form action="{{ route('comments.delete', $comment) }}" method="POST" class="m-0">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-outline-danger rounded-4">Delete</button>
+                            <button type="submit" class="btn btn-sm btn-danger ">Delete</button>
                         </form>
                     </div>
                 </div>

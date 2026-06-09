@@ -108,7 +108,7 @@
                     <div class="text-center mt-4">
                         <p class="mb-0 text-muted">
                             Already have an account?
-                            <a href="{{ route('loginForm') }}" class="text-decoration-none">
+                            <a href="{{ route('login') }}" class="text-decoration-none">
                                 Log in
                             </a>
                         </p>

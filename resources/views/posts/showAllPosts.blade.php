@@ -6,7 +6,7 @@
     <header class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
         <div>
             <h1 class="mb-1">All Posts</h1>
-            <p class="text-muted mb-0">Browse all posts from your blog.</p>
+            <p class="text-muted mb-0">Browse all posts.</p>
         </div>
 
         
@@ -17,6 +17,12 @@
             {{ session('success') }}
         </div>
     @endif
+    @guest
+            <div class="alert alert-info rounded-4 shadow-sm">
+                You are not logged in. <a href="{{route('login')}}"> Login</a> to read the full post.
+            </div>
+        @endguest
+
 
     <div class="row g-4">
         @forelse($posts as $post)
@@ -29,19 +35,23 @@
                                 <p class="text-muted mb-2">{{ Str::limit($post->content, 120) }}<a href="{{ route('posts.show', $post) }}" class="text-decoration-none">Read More</a></p>
                                 <br>
                                 
-                                <p class="mb-0 text-secondary">Author: {{ optional($post->user)->name ?? 'Unknown' }}</p>
+                                <p class="mb-0 text-secondary">Author: {{ optional ($post->user)->name ?? 'Unknown' }}</p>
                                 
                                 <p class="mb-0 text-secondary">Created: {{ optional($post->created_at)->format('M j, Y g:i A') }}</p>
                                 
                             </div>
 
-                            <div class="d-flex flex-wrap gap-2">
+                            <div class="d-flex flex-wrap gap-2 align-items-center">
+                                <span class="badge rounded-pill bg-light text-secondary d-flex align-items-center gap-2">
+                                    <span aria-hidden="true">💬</span>
+                                    <span>{{ $post->comments()->count() }}</span>
+                                </span>
                                 @if(auth()->id() == $post->user_id)
-                                    <a href="{{ route('posts.edit', $post) }}" class="btn btn-outline-warning btn-sm">Edit</a>
+                                    <a href="{{ route('posts.edit', $post) }}" class="btn btn-warning btn-sm">Edit</a>
                                     <form action="{{ route('posts.destroy', $post) }}" method="POST" class="m-0">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
                                 @endif
                             </div>

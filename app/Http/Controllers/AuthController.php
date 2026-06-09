@@ -36,13 +36,13 @@ class AuthController extends Controller
     return back()->with('error', 'Invalid credentials');
 }
     $request->session()->regenerate();
-    return redirect()->route('posts.index')->with('success', 'Logged in');
+    return redirect()->route('posts.all')->with('success', 'Logged in');
     }
     public function logout(Request $request){
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('loginForm')->with(['success'=>'Logged out successfully']);
+        return redirect()->route('login')->with(['success'=>'Logged out successfully']);
     }
 }
 

@@ -132,14 +132,14 @@
             @endif
             
             @if(Route::currentRouteName() !== 'posts.all')
-                <a href="{{ route('posts.all') }}">All Posts</a>
+                <a href="{{ route('posts.all') }}">Home</a>
             @endif
 <form action="{{ route('logout') }}" method="POST">
     @csrf
     <button type="submit">Log out</button>
 </form>            @endauth
         @guest
-            <a href="{{ route('loginForm') }}">Login</a>
+            <a href="{{ route('login') }}">Login</a>
             <a href="{{ route('registerForm') }}">Register</a>
         @endguest
     </div>

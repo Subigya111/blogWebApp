@@ -44,6 +44,11 @@
                                 <p class="mb-0 text-secondary">Created: {{ optional($post->created_at)->format('M j, Y g:i A') }}</p>
                                 
                             </div>
+                            <div class="d-flex flex-wrap gap-2 align-items-center">
+                                <span class="badge rounded-pill bg-light text-secondary d-flex align-items-center gap-2">
+                                    <span aria-hidden="true">💬</span>
+                                    <span>{{ $post->comments()->count() }}</span>
+                                </span>
 
                             <div class="d-flex flex-wrap gap-2">
                                 @if(auth()->id() == $post->user_id)

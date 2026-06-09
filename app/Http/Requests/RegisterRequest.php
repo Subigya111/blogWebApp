@@ -25,7 +25,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' =>'required|string|min:2|max:30',
             'email'=>'required|email|unique:users',//must not already exist 'users' table
-            'password'=>'required|confirmed',
+            'password'=>'required|min:8|confirmed',
             'image'=>'nullable|image|max:2048'
         ];
     }

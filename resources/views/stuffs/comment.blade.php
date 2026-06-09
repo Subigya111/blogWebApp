@@ -49,12 +49,12 @@
                             <form action="{{ route('comments.edit', $comment) }}" method="GET" class="m-0">
                                 @csrf
                                 @method('GET')
-                                <button class="btn btn-sm btn-outline-warning">Edit</button>
+                                <button class="btn btn-sm btn-warning">Edit</button>
                             </form>
                             <form action="{{ route('comments.delete', $comment) }}" method="POST" class="m-0">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                <button class="btn btn-sm btn-danger">Delete</button>
                             </form>
                         </div>
                     @endif
