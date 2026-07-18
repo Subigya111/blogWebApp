@@ -8,6 +8,7 @@ A blog application built with Laravel.
 - Create, edit, and delete posts
 - Comment on posts
 - Image upload
+- User profile 
 - Proper authorization. User can only edit,delete their own post or comments. 
 
 ## Technologies Used
@@ -21,7 +22,8 @@ A blog application built with Laravel.
 
 ```
 git clone https://github.com/Subigya111/blogWebApp.git
-cd your-repository
+cd blogWebApp
 composer install
 php artisan serve
+Run command 'php artisan storage:link' to view see the image uploaded
 ```
